@@ -2,7 +2,6 @@
   "name": "jonoob-parts",
   "private": true,
   "version": "0.1.0",
-  "workspaces": [],
   "scripts": {
     "dev": "pnpm -w -r --parallel dev",
     "dev:estore": "pnpm --filter ./apps/e-store dev",
