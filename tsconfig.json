@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "ES2017",
+    "module": "esnext",
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "moduleResolution": "bundler",
+    "paths": {
+      "@jonoob/ui": ["./packages/ui/src"],
+      "@jonoob/types": ["./packages/types/src"],
+      "@jonoob/db": ["./packages/db/src"],
+      "@jonoob/api-client": ["./packages/api-client/src"]
+    },
+    "jsx": "react-jsx",
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "forceConsistentCasingInFileNames": true
+  },
+  "include": ["apps/**/*", "packages/**/*"]
+}
