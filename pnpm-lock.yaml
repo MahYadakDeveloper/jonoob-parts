@@ -4,24 +4,32 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
+catalogs:
+  default:
+    next:
+      specifier: ~16.0.1
+      version: 16.0.1
+    react:
+      specifier: ^19.2.0
+      version: 19.2.0
+    react-dom:
+      specifier: ^19.2.0
+      version: 19.2.0
+
 importers:
 
-  .:
-    devDependencies:
-      typescript:
-        specifier: ^5
-        version: 5.9.3
+  .: {}
 
   apps/business-manager:
     dependencies:
       next:
-        specifier: 16.0.1
+        specifier: 'catalog:'
         version: 16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
-        specifier: 19.2.0
+        specifier: 'catalog:'
         version: 19.2.0
       react-dom:
-        specifier: 19.2.0
+        specifier: 'catalog:'
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@jonoob/types':
@@ -58,13 +66,13 @@ importers:
   apps/e-store:
     dependencies:
       next:
-        specifier: 16.0.1
+        specifier: 'catalog:'
         version: 16.0.1(@babel/core@7.28.5)(babel-plugin-react-compiler@1.0.0)(react-dom@19.2.0(react@19.2.0))(react@19.2.0)
       react:
-        specifier: 19.2.0
+        specifier: 'catalog:'
         version: 19.2.0
       react-dom:
-        specifier: 19.2.0
+        specifier: 'catalog:'
         version: 19.2.0(react@19.2.0)
     devDependencies:
       '@jonoob/types':

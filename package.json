@@ -9,9 +9,6 @@
     "build": "pnpm -w -r build",
     "start": "pnpm -w -r start",
     "lint": "pnpm -w -r lint",
-    "clean": "pnpm -w -r exec rm -rf .next dist node_modules"
-  },
-  "devDependencies": {
-    "typescript": "^5"
+    "clean": "pnpm -w -r --parallel exec rm -rf .next dist node_modules"
   }
 }
