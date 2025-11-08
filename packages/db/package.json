@@ -1,0 +1,19 @@
+{
+  "name": "db",
+  "private": "true",
+  "version": "0.0",
+  "description": "This package wrote for managing jonoob database (Main Store DB[inventory, transactions & etc], E-Store DB[Orders, E-CustomerAccounts & etc])",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [],
+  "author": "jonoob-team",
+  "license": "ISC",
+  "packageManager": "pnpm@10.20.0",
+  "dependencies": {
+    "mongodb": "^6.20.0",
+    "typescript": "catalog:"
+  }
+}

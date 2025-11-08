@@ -3,12 +3,12 @@
   "private": true,
   "version": "0.1.0",
   "scripts": {
-    "dev": "pnpm -w -r --parallel dev",
+    "dev": "pnpm -w -r --parallel --filter './apps/**' dev",
     "dev:estore": "pnpm --filter ./apps/e-store dev",
     "dev:manager": "pnpm --filter ./apps/business-manager dev",
-    "build": "pnpm -w -r build",
+    "build:packages": "pnpm -w -r --filter './packages/**' build",
     "start": "pnpm -w -r start",
     "lint": "pnpm -w -r lint",
-    "clean": "pnpm -w -r --parallel exec rm -rf .next dist node_modules"
+    "clean": "pnpm -w -r exec rm -rf .next dist node_modules"
   }
 }
