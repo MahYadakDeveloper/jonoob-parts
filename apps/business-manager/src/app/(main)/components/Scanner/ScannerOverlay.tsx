@@ -1,36 +1,75 @@
-import { createContext, ReactNode, useState } from "react"
+import {
+  ReactHTMLElement,
+  RefObject,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+} from "react";
 
-type ScannerProxyContext = {
-  drawBoundingBox: () => Promise<void>
-}
-
-export const scannerProxyContext = createContext<ScannerProxyContext | null>(null)
+export type ScannerOverlayHandles = {
+  drawBoundingBox: (
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ) => void;
+};
 
 export default function ScannerOverlay({
-  children
+  children,
+  ref,
 }: {
-  children: ReactNode
+  children: ReactHTMLElement<HTMLHtmlElement>;
+  ref: RefObject<ScannerOverlayHandles>;
 }) {
-  const [enabled, setEnabled] = useState(false)
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const clearCanvas = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  };
+  const drawBoundingBox = (
+    x: number,
+    y: number,
+    width: number,
+    height: number,
+  ) => {
+    clearCanvas();
+    console.log("Drawing bounding box");
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+    ctx.strokeStyle = "red";
+    ctx.lineWidth = 3;
+    ctx.strokeRect(x, y, width, height);
+    return;
+  };
 
-  if (!enabled)
-    return (
-      <div>
-        <button onClick={() => {setEnabled(true)}}>Enable</button>
-      </div>
-    )
-  
+  useImperativeHandle(ref, () => ({ drawBoundingBox }), [canvasRef]);
+
+  useEffect(() => {
+    window.addEventListener("resize", () => {
+      if (!canvasRef.current) return;
+      const canvas = canvasRef.current;
+
+      canvas.width = parseInt(children.props.width?.toString() || "0");
+      canvas.height = parseInt(children.props.height?.toString() || "0");
+    });
+  }, []);
+
   return (
-    <div className="relative">
+    <div className="relative w-full h-full">
       {/* Graphic Overlay */}
-      <div className="absolute w-full h-full"></div>
+      <canvas
+        ref={canvasRef}
+        className="absolute w-full h-full bg-green-900/25"
+      ></canvas>
 
       {/* CAMERA with Scanning functionality */}
-
-      <scannerProxyContext.Provider value={{
-      }}>
       {children}
-</scannerProxyContext.Provider>
     </div>
-  )
+  );
 }

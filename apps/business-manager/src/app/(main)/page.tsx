@@ -1,4 +1,5 @@
+import Scanner from "./components/Scanner";
+
 export default function MainPage() {
-  
-  return <h1>Testing</h1>
+  return <Scanner className=""></Scanner>;
 }
